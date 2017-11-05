@@ -1,4 +1,4 @@
-ORG 800H  
+	 ORG 800H  
 WYBOR  
 	 LXI H,MENU  
 	 RST 3  
@@ -29,12 +29,12 @@ PETLA 	 DAD D
 	 JNZ PETLA  
 	 HLT  
 PROCEDURA_2  
-	 LXI H,ENTER  
+	 LXI H,DZIELNA  
 	 RST 3  
 	 RST 5  
 	 MOV B,D  
 	 MOV C,E  
-	 LXI H,ENTER  
+	 LXI H,DZIELNIK  
 	 RST 3  
 	 RST 5  
 	 MVI H,0  
@@ -50,6 +50,17 @@ PETLA1
 	 INX H  
 	 JMP PETLA1  
 KONIEC  
-	 RST 6  
-MENU 	 DB 10,13,'wpisz 1 lub 2 > ','@'                       
-ENTER 	 DB 10,13,'','@'                          
+	 MOV B,H  
+	 MOV C,L  
+	 LXI H,WYNIK  
+	 RST 3  
+	 MOV A,B  
+	 RST 4  
+	 MOV A,C  
+	 RST 4  
+	 HLT  
+MENU 	 DB 10,13,'WPISZ 1 LUB 2 > ','@'   
+ENTER 	 DB 10,13,'','@'        
+DZIELNIK 	 DB 10,13,'DZIELNA WYNOSI:  ','@'       
+DZIELNA 	 DB 10,13,'DZIELNIK WYNOSI: ','@'  
+WYNIK 	 DB 10,13,'WYNIK WYNOSI: ','@' 
